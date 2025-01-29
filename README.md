@@ -1,3 +1,21 @@
+# Azurite Docker Image
+
+## Building and Pushing the Image
+
+To build and push the Docker image to our harbor registry:
+
+```bash
+./build-and-push.sh
+```
+
+This script will:
+1. Automatically detect the current git branch and commit
+2. Build the Docker image with tag format: `harbor.devops.indico.io/indico/azurite:{branch}.{commit}`
+3. Push the image to our harbor registry
+
+Note: Ensure you have Docker installed and are logged into the harbor registry before running the script.
+
+
 # Azurite V3
 
 [![npm version](https://badge.fury.io/js/azurite.svg)](https://badge.fury.io/js/azurite)
