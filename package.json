@@ -33,7 +33,7 @@
     "multistream": "^2.1.1",
     "mysql2": "^3.10.1",
     "rimraf": "^3.0.2",
-    "sequelize": "^6.31.0",
+    "sequelize": "^6.37.5",
     "stoppable": "^1.1.0",
     "tedious": "^16.7.0",
     "to-readable-stream": "^2.1.0",
