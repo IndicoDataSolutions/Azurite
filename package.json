@@ -3,7 +3,7 @@
   "displayName": "Azurite",
   "description": "An open source Azure Storage API compatible server",
   "icon": "icon.png",
-  "version": "3.33.0",
+  "version": "3.35.0",
   "publisher": "Azurite",
   "categories": [
     "Other"
@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@azure/ms-rest-js": "^1.5.0",
+    "applicationinsights": "^2.9.6",
     "args": "^5.0.1",
     "axios": "^0.27.0",
     "etag": "^1.8.1",
@@ -264,6 +265,11 @@
             ],
             "default": null,
             "description": "When using in-memory persistence, limit the total size of extents (blob and queue content) to a specific number of megabytes. Defaults to 50% of total memory."
+          },
+          "azurite.disableTelemetry": {
+            "type": "boolean",
+            "default": false,
+            "description": "Disable telemetry data collection of this Azurite execution. By default, Azurite will collect telemetry data to help improve the product."
           }
         }
       }
@@ -287,8 +293,8 @@
     "docker:publish-amd64": "cross-var docker push xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version-amd64",
     "docker:publish-windows-amd64": "cross-var docker push xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version-windows-amd64",
     "docker:publish-arm64": "cross-var docker push xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version-arm64",
-    "docker:create-manifest-versioned": "cross-var docker manifest create xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version-amd64 xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version-windows-amd64 xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version-arm64",
-    "docker:create-manifest-latest": "cross-var docker manifest create xstoreazurite.azurecr.io/public/azure-storage/azurite:latest xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version-amd64 xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version-windows-amd64 xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version-arm64",
+    "docker:create-manifest-versioned": "cross-var docker manifest create xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version-amd64 xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version-arm64",
+    "docker:create-manifest-latest": "cross-var docker manifest create xstoreazurite.azurecr.io/public/azure-storage/azurite:latest xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version-amd64 xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version-arm64",
     "docker:publish-manifest-versioned": "cross-var docker manifest push xstoreazurite.azurecr.io/public/azure-storage/azurite:$npm_package_version",
     "docker:publish-manifest-latest": "cross-var docker manifest push xstoreazurite.azurecr.io/public/azure-storage/azurite:latest",
     "prepare": "npm run build",
