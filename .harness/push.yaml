@@ -1,0 +1,51 @@
+pipeline:
+  name: Indico-Azurite
+  identifier: IndicoAzurite
+  tags: {}
+  template:
+    templateRef: account.Service_Image
+    versionLabel: "0.1"
+    templateInputs:
+      properties:
+        ci:
+          codebase:
+            build: <+input>
+      stages:
+        - stage:
+            identifier: build_test_container
+            type: CI
+            variables:
+              - name: build_ram
+                type: String
+                value: <+input>.default(2G).allowedValues(2G,3G,5G,7G,9G,11G,13G,15G,20G,25G,30G)
+              - name: node_selector
+                type: String
+                value: <+input>.default(cpu).allowedValues(cpu,cpuxl)
+              - name: build_cpu
+                type: String
+                value: <+input>.default(1000m).allowedValues(500m,1000m,1500m,2000m,3000m,4000m,5000m,6000m)
+        - stage:
+            identifier: build_image
+            type: CI
+            variables:
+              - name: build_ram
+                type: String
+                value: <+input>.default(2G).allowedValues(2G,3G,5G,7G,9G,11G,13G,15G,20G,25G,30G)
+              - name: build_cpu
+                type: String
+                value: <+input>.default(1000m).allowedValues(500m,1000m,1500m,2000m,3000m,4000m,5000m,6000m)
+              - name: node_selector
+                type: String
+                value: <+input>.default(cpu).allowedValues(cpu,cpuxl)
+      variables:
+        - name: repo
+          type: String
+          value: <+input>
+        - name: service
+          type: String
+          value: <+input>
+        - name: RUN_UNITTESTS
+          type: String
+          value: <+input>.default(TRUE).allowedValues(TRUE,FALSE)
+  projectIdentifier: Devops
+  orgIdentifier: default
